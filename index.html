@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBU STORE | Professional Business Management System</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="EBU STORE is a high-end business management system for inventory tracking, sales reporting, and financial analytics. Optimize your retail business in Rwanda.">
+    <meta name="keywords" content="EBU Store, Business Management, Inventory System Rwanda, Sales Tracking, Financial Reports, Retail POS">
+    <meta name="author" content="EBU STORE">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ebustore.com/">
+    <meta property="og:title" content="EBU STORE | Business Management System">
+    <meta property="og:description" content="Streamline your retail operations with EBU STORE's advanced inventory and sales management tools.">
+    <meta property="og:image" content="images/logo.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="EBU STORE | Business Management System">
+    <meta property="twitter:description" content="Professional inventory and sales tracking for modern businesses.">
+    <meta property="twitter:image" content="images/logo.jpg">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "EBU STORE",
+      "operatingSystem": "Web-based",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RWF"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "120"
+      }
+    }
+    </script>
+
+    <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tabler-icons@latest/tabler-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="navbar-brand">
+                <img src="images/logo.jpg" alt="EBU Store Logo" class="navbar-logo">
+                <h1>EBU STORE</h1>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link active"><i class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="products.html" class="nav-link"><i class="fas fa-box"></i><span>Products</span></a></li>
+                <li class="nav-item"><a href="sales.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Sales</span></a></li>
+                <li class="nav-item"><a href="expenses.html" class="nav-link"><i class="fas fa-money-bill-wave"></i><span>Expenses</span></a></li>
+                <li class="nav-item"><a href="profitloss.html" class="nav-link"><i class="fas fa-chart-bar"></i><span>P&L</span></a></li>
+                <li class="nav-item"><a href="customers.html" class="nav-link"><i class="fas fa-users"></i><span>Customers</span></a></li>
+                <li class="nav-item"><a href="invoices.html" class="nav-link"><i class="fas fa-receipt"></i><span>Invoices</span></a></li>
+                <li class="nav-item"><a href="reports.html" class="nav-link"><i class="fas fa-file-alt"></i><span>Reports</span></a></li>
+                <li class="nav-item"><a href="alerts.html" class="nav-link"><i class="fas fa-bell"></i><span>Alerts</span></a></li>
+                <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                <li class="nav-item"><a href="#" onclick="verifyAdminAccess(event)" class="nav-link"><i class="fas fa-key"></i><span>Credentials</span></a></li>
+            </ul>
+            <div class="navbar-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">AU</div>
+                </div>
+                <a href="login.html" class="nav-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <div class="content">
+                <div id="dashboard" class="page">
+                    <div class="header" style="margin-bottom: 30px; background: none; box-shadow: none; padding: 0;">
+                        <h2 class="header-title">Dashboard Overview</h2>
+                        <div class="date-display" style="color: #64748b; font-size: 14px;">
+                            <i class="far fa-calendar-alt"></i> <span id="currentDate">Wednesday, May 13, 2026</span>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-grid">
+                        <div class="stat-card card-sales">
+                            <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-label">Total Sales</div>
+                                <div class="stat-value">Rwf 0</div>
+                                <div class="stat-change">↑ 12% <span>vs last month</span></div>
+                            </div>
+                        </div>
+                        <div class="stat-card card-profit">
+                            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-label">Net Profit</div>
+                                <div class="stat-value">Rwf 0</div>
+                                <div class="stat-change">↑ 8% <span>vs last month</span></div>
+                            </div>
+                        </div>
+                        <div class="stat-card card-products">
+                            <div class="stat-icon"><i class="fas fa-box"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-label">Products</div>
+                                <div class="stat-value">0</div>
+                                <div class="stat-change">Active Items</div>
+                            </div>
+                        </div>
+                        <div class="stat-card card-alerts">
+                            <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-label">Alerts</div>
+                                <div class="stat-value">0</div>
+                                <div class="stat-change">Low Stock</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-content-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Weekly Sales Summary</h3>
+                                <div class="chart-actions" style="display: flex; align-items: center; gap: 10px;">
+                                    <a href="reports.html" class="btn btn-secondary btn-small">View Reports</a>
+                                    <select style="padding: 5px 10px; border-radius: 5px; border: 1px solid #e0e5ff; font-size: 12px;">
+                                        <option>Last 7 Days</option>
+                                        <option>Last 30 Days</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="salesChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Recent Transactions</h3>
+                                <a href="sales.html" class="btn btn-secondary btn-small">View All Sales</a>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Product</th>
+                                            <th>Qty</th>
+                                            <th>Amount</th>
+                                            <th>Paid</th>
+                                            <th>Balance</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentTransactionsBody">
+                                        <!-- Dynamic content -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>      </div>
+            </div>
+            
+            <!-- Professional Footer -->
+            <footer class="main-footer">
+                <div class="footer-content">
+                    <div class="footer-section footer-brand">
+                        <a href="index.html" class="footer-logo">
+                            <img src="images/logo.jpg" alt="Logo">
+                            <span>EBU STORE</span>
+                        </a>
+                        <p>Enterprise Business Management System. Streamlining your operations with precision and modern technology.</p>
+                        <div class="footer-contact">
+                            <li><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</li>
+                            <li><i class="fas fa-phone"></i> +250 788 000 000</li>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Quick Navigation</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Dashboard</a></li>
+                            <li><a href="products.html">Products Inventory</a></li>
+                            <li><a href="sales.html">Sales Tracking</a></li>
+                            <li><a href="expenses.html">Expense Manager</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Financials</h4>
+                        <ul class="footer-links">
+                            <li><a href="profitloss.html">Profit & Loss</a></li>
+                            <li><a href="invoices.html">Invoice History</a></li>
+                            <li><a href="reports.html">Business Reports</a></li>
+                            <li><a href="customers.html">Customer Base</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Support & Info</h4>
+                        <ul class="footer-links">
+                            <li><a href="alerts.html">System Alerts</a></li>
+                            <li><a href="settings.html">General Config</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        &copy; 2024 EBU STORE. All rights reserved. Designed for Excellence.
+                    </div>
+                    <div class="system-status">
+                        <div class="status-dot"></div>
+                        <span>System Online: v2.4.0</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
+

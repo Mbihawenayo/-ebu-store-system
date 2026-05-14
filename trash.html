@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycle Bin - EBU STORE | Data Recovery</title>
+    <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="navbar-brand">
+                <img src="images/logo.jpg" alt="EBU Store Logo" class="navbar-logo">
+                <h1>EBU STORE</h1>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="products.html" class="nav-link"><i class="fas fa-box"></i><span>Products</span></a></li>
+                <li class="nav-item"><a href="sales.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Sales</span></a></li>
+                <li class="nav-item"><a href="expenses.html" class="nav-link"><i class="fas fa-money-bill-wave"></i><span>Expenses</span></a></li>
+                <li class="nav-item"><a href="profitloss.html" class="nav-link"><i class="fas fa-chart-bar"></i><span>P&L</span></a></li>
+                <li class="nav-item"><a href="trash.html" class="nav-link active"><i class="fas fa-trash-restore"></i><span>Recycle Bin</span></a></li>
+                <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+            </ul>
+            <div class="navbar-actions">
+                <a href="login.html" class="nav-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <div class="content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <div>
+                        <h1 style="font-size: 24px; font-weight: 600; color: #333;">Recycle Bin</h1>
+                        <p style="color: #666; font-size: 14px;">Restore records you deleted by accident.</p>
+                    </div>
+                    <button class="btn btn-danger" onclick="emptyTrash()">
+                        <i class="fas fa-dumpster"></i> Empty Trash Forever
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Deleted Records</h2>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Category/Product</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trashTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="main-footer">
+                <div class="footer-bottom">
+                    <div class="copyright">&copy; 2024 EBU STORE. Data Security Protocol Enabled.</div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Specific logic for Trash page
+        window.addEventListener('load', async () => {
+            await refreshAllUI();
+            syncTrashTable();
+        });
+
+        function syncTrashTable() {
+            const trashBody = document.getElementById('trashTableBody');
+            if (!trashBody) return;
+            
+            trashBody.innerHTML = '';
+            const deletedSales = APP_DATA.sales.filter(s => s.is_deleted == 1);
+            const deletedExpenses = APP_DATA.expenses.filter(e => e.is_deleted == 1);
+            
+            const allTrash = [
+                ...deletedSales.map(s => ({ ...s, type: 'Sale', displayCat: s.product, displayAmount: s.total })),
+                ...deletedExpenses.map(e => ({ ...e, type: 'Expense', displayCat: e.category, displayAmount: e.amount }))
+            ];
+
+            allTrash.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(item => {
+                const row = trashBody.insertRow();
+                row.innerHTML = `
+                    <td>${item.date}</td>
+                    <td><span class="badge ${item.type === 'Sale' ? 'badge-success' : 'badge-warning'}">${item.type}</span></td>
+                    <td>${item.displayCat}</td>
+                    <td>${item.displayAmount}</td>
+                    <td>
+                        <button class="btn btn-success btn-small" onclick="restoreRecord(${item.id}, '${item.type}')">
+                            <i class="fas fa-undo"></i> Restore
+                        </button>
+                        <button class="btn btn-danger btn-small" onclick="permanentlyDelete(${item.id}, '${item.type}')">
+                            <i class="fas fa-times"></i> Delete Forever
+                        </button>
+                    </td>
+                `;
+            });
+
+            if (allTrash.length === 0) {
+                trashBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 40px; color: #94a3b8;">
+                    <i class="fas fa-trash-alt" style="font-size: 48px; margin-bottom: 15px; display: block; opacity: 0.2;"></i>
+                    Your Recycle Bin is empty.
+                </td></tr>';
+            }
+        }
+
+        async function restoreRecord(id, type) {
+            const endpoint = type === 'Sale' ? '/sales' : '/expenses';
+            const result = await apiFetch(`${endpoint}/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({ is_deleted: 0 })
+            });
+            if (result) {
+                await refreshAllUI();
+                syncTrashTable();
+            }
+        }
+
+        async function permanentlyDelete(id, type) {
+            if (confirm('Are you sure? This cannot be undone.')) {
+                const endpoint = type === 'Sale' ? '/sales' : '/expenses';
+                const result = await apiFetch(`${endpoint}/${id}`, { method: 'DELETE' });
+                if (result) {
+                    await refreshAllUI();
+                    syncTrashTable();
+                }
+            }
+        }
+
+        async function emptyTrash() {
+            if (confirm('Are you sure you want to clear the entire Recycle Bin forever?')) {
+                // Implementation for bulk delete
+                alert('This feature is being finalized. For now, please delete items individually.');
+            }
+        }
+    </script>
+</body>
+</html>

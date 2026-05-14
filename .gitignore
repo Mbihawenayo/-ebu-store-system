@@ -1,0 +1,10 @@
+node_modules/
+.env
+*.log
+.DS_Store
+dist/
+.gemini/
+setup_shortcut.ps1
+run_system.bat
+scripts/
+database_backup/

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses - EBU STORE | Professional Business Management System</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Manage your business expenses with EBU STORE. Track operational costs, utilities, and logistics easily.">
+    <meta name="keywords" content="Expense Management, Business Costs, Operational Expenses, EBU Store">
+    <meta name="author" content="EBU STORE">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tabler-icons@latest/tabler-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="navbar-brand">
+                <img src="images/logo.jpg" alt="EBU Store Logo" class="navbar-logo">
+                <h1>EBU STORE</h1>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="products.html" class="nav-link"><i class="fas fa-box"></i><span>Products</span></a></li>
+                <li class="nav-item"><a href="sales.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Sales</span></a></li>
+                <li class="nav-item"><a href="expenses.html" class="nav-link active"><i class="fas fa-money-bill-wave"></i><span>Expenses</span></a></li>
+                <li class="nav-item"><a href="profitloss.html" class="nav-link"><i class="fas fa-chart-bar"></i><span>P&L</span></a></li>
+                <li class="nav-item"><a href="customers.html" class="nav-link"><i class="fas fa-users"></i><span>Customers</span></a></li>
+                <li class="nav-item"><a href="invoices.html" class="nav-link"><i class="fas fa-receipt"></i><span>Invoices</span></a></li>
+                <li class="nav-item"><a href="reports.html" class="nav-link"><i class="fas fa-file-alt"></i><span>Reports</span></a></li>
+                <li class="nav-item"><a href="alerts.html" class="nav-link"><i class="fas fa-bell"></i><span>Alerts</span></a></li>
+                <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                <li class="nav-item"><a href="#" onclick="verifyAdminAccess(event)" class="nav-link"><i class="fas fa-key"></i><span>Credentials</span></a></li>
+            </ul>
+            <div class="navbar-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">AU</div>
+                </div>
+                <a href="login.html" class="nav-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <div class="content">
+                <div id="expenses" class="page">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Expense Management</h2>
+                            <button class="btn btn-primary" onclick="openModal('addExpenseModal')">Add Expense</button>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Paid</th>
+                                    <th>Status</th>
+                                    <th>Balance</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expensesTableBody">
+                                <!-- Data will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Professional Footer -->
+            <footer class="main-footer">
+                <div class="footer-content">
+                    <div class="footer-section footer-brand">
+                        <a href="index.html" class="footer-logo">
+                            <img src="images/logo.jpg" alt="Logo">
+                            <span>EBU STORE</span>
+                        </a>
+                        <p>Enterprise Business Management System. Streamlining your operations with precision and modern technology.</p>
+                        <div class="footer-contact">
+                            <li><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</li>
+                            <li><i class="fas fa-phone"></i> +250 788 000 000</li>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Quick Navigation</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Dashboard</a></li>
+                            <li><a href="products.html">Products Inventory</a></li>
+                            <li><a href="sales.html">Sales Tracking</a></li>
+                            <li><a href="expenses.html">Expense Manager</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Financials</h4>
+                        <ul class="footer-links">
+                            <li><a href="profitloss.html">Profit & Loss</a></li>
+                            <li><a href="invoices.html">Invoice History</a></li>
+                            <li><a href="reports.html">Business Reports</a></li>
+                            <li><a href="customers.html">Customer Base</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Support & Info</h4>
+                        <ul class="footer-links">
+                            <li><a href="alerts.html">System Alerts</a></li>
+                            <li><a href="settings.html">General Config</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        &copy; 2024 EBU STORE. All rights reserved. Designed for Excellence.
+                    </div>
+                    <div class="system-status">
+                        <div class="status-dot"></div>
+                        <span>System Online: v2.4.0</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="addExpenseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add Expense</h2>
+                <button class="close-btn" onclick="closeModal('addExpenseModal')">&times;</button>
+            </div>
+            <form id="addExpenseForm">
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="expCategory" list="expenseCategoryList" placeholder="Select or type category">
+                    <datalist id="expenseCategoryList">
+                        <option value="Stock">
+                        <option value="Transport">
+                        <option value="Rent">
+                        <option value="Packaging">
+                        <option value="Utilities">
+                        <option value="Salary">
+                        <option value="Marketing">
+                        <option value="Other">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" id="expDesc" placeholder="Expense description">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Amount (Rwf)</label>
+                        <input type="number" id="expAmount" placeholder="Enter amount">
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="expDate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Payment Status</label>
+                        <select id="expStatus" onchange="updateExpBalanceFromPaid()">
+                            <option value="Paid">Paid</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Partial">Partial Paid</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount Paid (Rwf)</label>
+                        <input type="number" id="expAmountPaid" placeholder="Enter amount paid" oninput="calculateExpBalance()">
+                    </div>
+                    <div class="form-group">
+                        <label>Balance Due (Rwf)</label>
+                        <input type="number" id="expBalance" placeholder="0" readonly>
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addExpenseModal')">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="addExpense()">Record Expense</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="editExpenseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Edit Expense</h2>
+                <button class="close-btn" onclick="closeModal('editExpenseModal')">&times;</button>
+            </div>
+            <form id="editExpenseForm">
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="editExpCategory" list="expenseCategoryList">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" id="editExpDesc">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Amount (Rwf)</label>
+                        <input type="number" id="editExpAmount">
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="editExpDate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Payment Status</label>
+                        <select id="editExpStatus" onchange="updateEditExpBalanceFromPaid()">
+                            <option value="Paid">Paid</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Partial">Partial Paid</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount Paid (Rwf)</label>
+                        <input type="number" id="editExpPaidAmount" oninput="calculateEditExpBalance()">
+                    </div>
+                    <div class="form-group">
+                        <label>Balance Due (Rwf)</label>
+                        <input type="number" id="editExpBalance" readonly>
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('editExpenseModal')">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveExpense()">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+

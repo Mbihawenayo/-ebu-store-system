@@ -8,14 +8,15 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const SECRET_KEY = 'ebu_store_secret_key';
+const SECRET_KEY = process.env.SECRET_KEY || 'ebu_store_secret_key';
 
-// --- MySQL Configuration ---
+// --- MySQL Configuration (uses Railway env variables) ---
 const dbConfig = {
-    host: 'localhost',
-    user: 'root',
-    password: '', // Enter your MySQL password here
-    database: 'ebu_store'
+    host: process.env.MYSQLHOST || 'localhost',
+    user: process.env.MYSQLUSER || 'root',
+    password: process.env.MYSQLPASSWORD || '',
+    database: process.env.MYSQLDATABASE || 'ebu_store',
+    port: process.env.MYSQLPORT || 3306
 };
 
 let pool;

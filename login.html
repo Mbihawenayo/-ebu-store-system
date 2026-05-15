@@ -341,13 +341,13 @@
                             <p>Please enter your details to sign in.</p>
                         </div>
                         
-                        <form id="loginForm" onsubmit="handleLogin(event)">
+                        <form id="loginForm" onsubmit="handleLogin(event)" autocomplete="off">
                             <div class="form-group">
-                                <input type="text" id="loginEmail" class="login-input" placeholder="Email or Username" required>
+                                <input type="text" id="loginEmail" class="login-input" placeholder="Email or Username" autocomplete="off" required>
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div class="form-group">
-                                <input type="password" id="loginPass" class="login-input" placeholder="Password" required>
+                                <input type="password" id="loginPass" class="login-input" placeholder="Password" autocomplete="new-password" required>
                                 <i class="fas fa-lock"></i>
                             </div>
                             <div style="display: flex; align-items: center; gap: 8px; margin: -10px 0 20px 5px; color: #64748b; font-size: 14px;">
@@ -412,7 +412,7 @@
     </div>
 
     <script>
-        const API_URL = 'http://127.0.0.1:3000';
+        const API_URL = 'https://ebu-store-system-production.up.railway.app';
 
         function toggleAuth(showRegister) {
             const card = document.getElementById('authCard');

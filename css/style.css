@@ -810,16 +810,118 @@ textarea:focus {
 }
 
 @media (max-width: 480px) {
+    :root {
+        --navbar-height: 60px;
+    }
+
+    .navbar {
+        padding: 0 10px;
+    }
+
     .navbar-brand h1 {
         display: none;
     }
-    
-    .nav-link span {
-        font-size: 11px;
+
+    .navbar-logo {
+        width: 28px;
+        height: 28px;
     }
     
-    .stat-value {
+    .nav-menu {
+        gap: 2px;
+    }
+
+    .nav-link {
+        padding: 6px 8px;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .nav-link i {
         font-size: 18px;
+    }
+
+    .nav-link span {
+        font-size: 9px;
+        font-weight: 600;
+    }
+    
+    .nav-link.active::after {
+        bottom: 2px;
+        width: 8px;
+    }
+
+    .navbar-actions {
+        gap: 8px;
+    }
+
+    .user-profile {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+    }
+
+    .logout-link span {
+        display: none;
+    }
+
+    .content {
+        padding: 15px 10px;
+    }
+
+    .header-title {
+        font-size: 18px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .stat-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .stat-value {
+        font-size: 16px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .card {
+        padding: 15px 12px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px 15px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
     }
 }
 

@@ -1,4 +1,4 @@
-const API_URL = 'http://127.0.0.1:3000';
+const API_URL = 'https://ebu-store-system-production.up.railway.app';
 
 let APP_DATA = {
     inventory: [],

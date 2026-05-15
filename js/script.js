@@ -301,8 +301,8 @@ function syncDashboardStats() {
         return true;
     };
 
-    const sales = rawSales.filter(s => filterByTime(s.date));
-    const expenses = rawExpenses.filter(e => filterByTime(e.date));
+    const sales = rawSales.filter(s => filterByTime(s.date) && s.is_deleted != 1);
+    const expenses = rawExpenses.filter(e => filterByTime(e.date) && e.is_deleted != 1);
 
     // Calculate totals
     const totalSales = sales.reduce((sum, s) => sum + parseInt(s.total.replace('Rwf ', '').replace(/,/g, '')), 0);
@@ -828,7 +828,7 @@ function syncCustomerList() {
     const sales = APP_DATA.sales;
     const salesStats = {};
     sales.forEach(s => {
-        if (s.customer === 'Walk-in' || !s.customer) return;
+        if (s.customer === 'Walk-in' || !s.customer || s.is_deleted == 1) return;
         if (!salesStats[s.customer]) salesStats[s.customer] = { spent: 0, history: [] };
         const amount = parseInt(s.total ? s.total.replace('Rwf ', '').replace(/,/g, '') : 0);
         salesStats[s.customer].spent += amount;

@@ -1,10 +1,24 @@
+# Dependencies
 node_modules/
-.env
-*.log
-.DS_Store
-dist/
-.gemini/
+
+# Database (local data - don't push to GitHub)
+database.sqlite
+*.sqlite
+*.db
+
+# Local shortcuts & launchers
+*.vbs
 setup_shortcut.ps1
-run_system.bat
-scripts/
-database_backup/
+update_shortcut.ps1
+start_server.bat
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local

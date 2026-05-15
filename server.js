@@ -11,12 +11,11 @@ const PORT = process.env.PORT || 3000;
 const SECRET_KEY = 'ebu_store_secret_key';
 
 // --- MySQL Configuration ---
-// --- Database Configuration (Render Friendly) ---
-const dbConfig = process.env.DATABASE_URL || {
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'ebu_store'
+const dbConfig = {
+    host: 'localhost',
+    user: 'root',
+    password: '', // Enter your MySQL password here
+    database: 'ebu_store'
 };
 
 let pool;
